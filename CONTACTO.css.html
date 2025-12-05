@@ -1,0 +1,200 @@
+<html>
+<head>
+  <title>CONTACTO RJTT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Estilos externos -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Estilos personalizados -->
+  <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+    /* Barra lateral fija */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 120px;
+      background-color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      z-index: 20;
+    }
+    .sidebar img {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 50%;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 16px 0;
+      width: 100%;
+      text-align: center;
+      display: block;
+      transition: background-color 0.3s;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .sidebar a i {
+      font-size: 24px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background-color: black;
+    }
+
+    /* Ajuste de contenido con barra lateral */
+    .content-with-sidebar { margin-left: 120px; }
+    @media only screen and (max-width: 600px) {
+      .sidebar { display: none; }
+      .content-with-sidebar { margin-left: 0; }
+    }
+
+    /* Fondo general */
+    body {
+      background-image: url('conexion-digital-abstracta.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Caja blanca para resaltar información */
+    .white-box {
+      background: rgba(255, 255, 255, 0.85);
+      color: black;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      max-width: 900px;
+    }
+
+    /* Imagen flotante arriba a la derecha */
+    .image-top-right {
+      float: right;
+      width: 100px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <nav class="sidebar">
+    <img src="RJTT.png" alt="Logo">
+
+    <!-- Se agregaron data-sound para reproducir los audios correspondientes -->
+    <a href=".\Blog de RJTT.index.html" data-sound="homeSound">
+      <i class="fa fa-home"></i> HOME
+    </a>
+    <a href=".\Juegos.css.html" data-sound="juegosSound">
+      <i class="fa fa-gamepad"></i> JUEGOS
+    </a>
+    <a href=".\CONTACTO.css.html" class="active" data-sound="contactoSound">
+      <i class="fa fa-envelope"></i> CONTACTO
+    </a>
+  </nav>
+
+  <!-- Audios ocultos (colócalos en la misma carpeta que este HTML) -->
+  <audio id="homeSound" src="Gta v notification.mp3" preload="auto"></audio>
+  <audio id="juegosSound" src="Coin.mp3" preload="auto"></audio>
+  <audio id="contactoSound" src="Noti_Xbox.mp3" preload="auto"></audio>
+
+  <!-- Contenido principal -->
+  <div class="w3-content content-with-sidebar" style="max-width:1400px">
+
+    <!-- Encabezado -->
+    <header class="white-box w3-center"> 
+      <h1><b>CONTACTO</b></h1>
+      <p>Bienvenido a la sección de <span class="w3-tag">Contacto</span></p>
+    </header>
+
+    <!-- Información del autor -->
+    <div class="white-box w3-center" id="contacto">
+      <h2 class="w3-wide">AUTOR</h2>
+      <p class="w3-opacity"><i>RJTT</i></p>
+      <p class="w3-center">RAFAEL JESUS TRESS TRUJILLO</p>
+      <p class="w3-center">📧 rjtresst@gmail.com</p>
+
+      <!-- Imagen clickeable que abre Gmail para redactar correo -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rjtresst@gmail.com&su=Contacto%20desde%20tu%20web&body=Hola%20Rafael," target="_blank">
+        <img src="Icono de correo Electronico.png" alt="Enviar correo" 
+             style="width:80px; margin-top:15px; cursor:pointer;">
+      </a>
+
+      <!-- Imagen clickeable que abre perfil de Facebook -->
+      <a href="https://www.facebook.com/share/1GbQYVGtxq/" target="_blank">
+        <img src="Facebook.png" alt="Perfil de Facebook" 
+             style="width:80px; margin-top:15px; margin-left:20px; cursor:pointer;">
+      </a>
+    </div>
+
+    <!-- Mensaje y estado del sitio -->
+    <div class="white-box">
+      <p class="w3-justify"><b>¡Estamos trabajando!</b></p>
+      <!-- Imagen que muestra estado de construcción -->
+      <img src="Trabajando.png" alt="Trabajando" class="image-top-right">
+      <p class="w3-justify">
+        Puedes contactarme a través de mi correo electrónico o redes sociales.  
+        ¡Estoy abierto a sugerencias y colaboraciones!
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Script mínimo que reproduce el audio correspondiente y luego navega -->
+  <script>
+    (function(){
+      const sidebarLinks = document.querySelectorAll('.sidebar a[data-sound]');
+      sidebarLinks.forEach(function(link){
+        link.addEventListener('click', function(e){
+          const soundId = this.dataset.sound;
+          const audio = document.getElementById(soundId);
+
+          // Si no existe el audio, dejar la navegación normal
+          if (!audio) return;
+
+          // Evitar navegación inmediata para que se escuche el sonido
+          e.preventDefault();
+
+          try { audio.currentTime = 0; } catch (err) {}
+
+          const playPromise = audio.play();
+
+          const navigate = () => {
+            window.location.href = this.getAttribute('href');
+          };
+
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              // Si la duración está disponible y razonable, esperar su duración (máx 1200ms), si no usar 350ms
+              let delay = 350;
+              const d = audio.duration;
+              if (d && isFinite(d) && d > 0 && d < 10) {
+                delay = Math.max(250, Math.min(1200, Math.round(d * 1000)));
+              }
+              setTimeout(navigate, delay);
+            }).catch((err) => {
+              // Si la reproducción fue bloqueada o falló, navegar inmediatamente
+              console.warn('No se pudo reproducir audio:', err);
+              navigate();
+            });
+          } else {
+            // Fallback
+            setTimeout(navigate, 350);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

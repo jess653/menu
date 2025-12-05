@@ -1,0 +1,177 @@
+<html>
+<head>
+  <title>JUEGOS SEGUN RJTT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 120px;
+      background-color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      z-index: 20;
+    }
+    .sidebar img {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 50%;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 16px 0;
+      width: 100%;
+      text-align: center;
+      display: block;
+      transition: background-color 0.3s;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .sidebar a i {
+      font-size: 24px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background-color: black;
+    }
+    .content-with-sidebar { margin-left: 120px; }
+    @media only screen and (max-width: 600px) {
+      .sidebar { display: none; }
+      .content-with-sidebar { margin-left: 0; }
+    }
+
+    body {
+      background-image: url('Collage-varios-juegos.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .white-box {
+      background: rgba(255, 255, 255, 0.85);
+      color: black;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      max-width: 900px;
+    }
+  </style>
+</head>
+<body>
+
+ <!-- Barra lateral -->
+  <nav class="sidebar">
+    <img src="RJTT.png" alt="Logo">
+
+    <a href=".\Blog de RJTT.index.html" data-sound="homeSound">
+      <i class="fa fa-home"></i> HOME
+    </a>
+
+    <a href=".\Juegos.css.html" data-sound="juegosSound">
+      <i class="fa fa-gamepad"></i> JUEGOS
+    </a>
+
+    <a href=".\CONTACTO.css.html" data-sound="contactoSound">
+      <i class="fa fa-envelope"></i> CONTACTO
+    </a>
+  </nav>
+
+  <!-- Audios de sidebar -->
+  <audio id="homeSound" src="Gta v notification.mp3" preload="auto"></audio>
+  <audio id="juegosSound" src="Coin.mp3" preload="auto"></audio>
+  <audio id="contactoSound" src="Noti_Xbox.mp3" preload="auto"></audio>
+
+  <div class="w3-content content-with-sidebar" style="max-width:1400px">
+
+    <!-- Botón desplegable arriba derecha -->
+    <div style="position:relative; text-align:right; margin:10px 20px;">
+      <button id="dropdownBtn" class="w3-button w3-black">Más páginas <i class="fa fa-caret-down"></i></button>
+      <div id="dropdownMenu" class="w3-bar-block w3-border w3-black" style="display:none; position:absolute; right:0; z-index:10;">
+        <a href="./pagina1.html" class="w3-bar-item w3-button" data-sound="page1Sound">Página 1</a>
+        <a href="./pagina2.html" class="w3-bar-item w3-button" data-sound="page2Sound">Página 2</a>
+        <a href="./pagina3.html" class="w3-bar-item w3-button" data-sound="page3Sound">Página 3</a>
+      </div>
+    </div>
+
+    <!-- Audios del dropdown -->
+    <audio id="page1Sound" src="Sound1.mp3" preload="auto"></audio>
+    <audio id="page2Sound" src="Sound2.mp3" preload="auto"></audio>
+    <audio id="page3Sound" src="Sound3.mp3" preload="auto"></audio>
+
+    <header class="white-box w3-center"> 
+      <h1><b>JUEGOS</b></h1>
+      <p>Bienvenido a la sección de <span class="w3-tag">Juegos</span></p>
+    </header>
+
+    <div class="white-box w3-center" id="Juegos">
+      <h2 class="w3-wide">Colección, Análisis y Recomendaciones</h2>
+      <p class="w3-opacity"><i>Explora el mundo gamer</i></p>
+      <p class="w3-justify">
+        Aquí encontrarás reseñas, análisis y comentarios sobre distintos videojuegos, tanto clásicos como modernos. 
+        Desde mecánicas innovadoras hasta historias cautivadoras, esta sección busca transmitir la experiencia única 
+        que cada título ofrece a los jugadores.
+      </p>
+    </div>
+  </div>
+
+  <!-- Script sidebar -->
+  <script>
+    (function() {
+      const links = document.querySelectorAll('.sidebar a[data-sound]');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const audio = document.getElementById(this.dataset.sound);
+          if (!audio) return;
+          e.preventDefault();
+          try { audio.currentTime = 0; } catch {}
+          const playPromise = audio.play();
+          const navigate = () => window.location.href = this.getAttribute('href');
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              let delay = 350;
+              const d = audio.duration;
+              if (d && isFinite(d) && d > 0 && d < 10) delay = Math.max(250, Math.min(1000, Math.round(d*1000)));
+              setTimeout(navigate, delay);
+            }).catch(() => navigate());
+          } else setTimeout(navigate, 350);
+        });
+      });
+    })();
+  </script>
+
+  <!-- Script dropdown -->
+  <script>
+    const btn=document.getElementById('dropdownBtn'),menu=document.getElementById('dropdownMenu');
+    btn.onclick=()=>menu.style.display=(menu.style.display==='block'?'none':'block');
+    menu.querySelectorAll('a[data-sound]').forEach(link=>{
+      link.onclick=function(e){
+        const audio=document.getElementById(this.dataset.sound);
+        if(!audio)return;
+        e.preventDefault();
+        try{audio.currentTime=0;}catch{}
+        const nav=()=>window.location.href=this.href;
+        const p=audio.play();
+        if(p!==undefined)p.then(()=>setTimeout(nav,Math.min(1000,Math.max(250,Math.round((audio.duration||0.35)*1000))))).catch(nav);
+        else setTimeout(nav,350);
+      }
+    });
+    window.onclick=e=>{if(!btn.contains(e.target)&&!menu.contains(e.target))menu.style.display='none'};
+  </script>
+
+</body>
+</html>
