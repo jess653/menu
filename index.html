@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Menú con botones — Acceso a 5 páginas</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#06b6d4; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
+      --radius:12px; --pad:18px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071026 0%,var(--bg) 100%);color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:32px}
+    .container{max-width:940px;width:100%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;padding:28px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+
+    nav{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    /* buttons as accessible links */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:inherit;font-weight:600;min-width:160px;transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:focus{outline:3px solid rgba(6,182,212,0.18);outline-offset:3px}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .btn .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 4px 12px rgba(6,182,212,0.14)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+    footer{margin-top:20px;color:var(--muted);font-size:13px}
+
+    @media (max-width:520px){.container{padding:16px}.btn{min-width:unset;width:100%}}
+  </style>
+</head>
+<body>
+  <div class="container" role="application">
+    <header>
+      <div>
+        <h1>Menú principal</h1>
+        <p class="lead">Selecciona una página con los botones debajo.</p>
+      </div>
+      <div aria-hidden="true">🔗</div>
+    </header>
+
+    <!-- Nav como lista para mejor accesibilidad -->
+    <nav aria-label="Navegación principal">
+      <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+        <li><a class="btn" href="sentai.html" title="Ir a Página 1"><span class="dot" aria-hidden="true"></span> Página 1</a></li>
+        <li><a class="btn" href="videojuegos.html" title="Ir a Página 2"><span class="dot" aria-hidden="true"></span> Página 2</a></li>
+        <li><a class="btn" href="heroes.html" title="Ir a Página 3"><span class="dot" aria-hidden="true"></span> Página 3</a></li>
+        <li><a class="btn" href="pagina4.html" title="Ir a Página 4"><span class="dot" aria-hidden="true"></span> Página 4</a></li>
+        <li><a class="btn" href="pagina5.html" title="Ir a Página 5"><span class="dot" aria-hidden="true"></span> Página 5</a></li>
+      </ul>
+    </nav>
+
+    <footer>
+      Consejo: crea 5 archivos HTML en la misma carpeta (pagina1.html ... pagina5.html) o cambia los href si están en otra ruta.
+    </footer>
+  </div>
+</body>
+</html>
